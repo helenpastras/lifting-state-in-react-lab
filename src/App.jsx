@@ -1,6 +1,8 @@
 // src/App.jsx
 
 import './App.css';
+import BurgerStack from './components/BurgerStack/BurgerStack';
+import IngredientList from './components/IngredientList/IngredientList';
 
 const App = () => {
   const availableIngredients = [
@@ -20,11 +22,14 @@ const App = () => {
     { name: 'Swiss Cheese', color: '#F1E1A8' },
   ];
 
+  
+
   return (
     <main>
       <h1>Burger Stacker</h1>
       <section>
-      {/* List & Stack components */}
+        <IngredientList/>
+        <BurgerStack/>
       </section>
     </main>
   );
