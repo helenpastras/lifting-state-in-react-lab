@@ -1,7 +1,7 @@
 // src/components/IngredientList/IngredientList.jsx
 
 const IngredientList = ({ingredients, addToBurger}) => {
-  return (
+return (
     <ul>
       {ingredients.map((ingredient, index) => (
         <li
