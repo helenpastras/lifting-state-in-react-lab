@@ -10,13 +10,30 @@ const App = () => {
   const [stack, setStack] = useState([]);
 
   const addToBurger = (ingredient) => {
-    setStack(prevStack => [...prevStack, ingredient]);
+    setStack(prevStack => {
+      const existing = prevStack.find(item => item.name === ingredient.name);
+      if (existing) {
+        return prevStack.map(item =>
+          item.name === ingredient.name
+            ? { ...item, count: item.count + 1 }
+            : item
+        );
+      } else {
+        return [...prevStack, { ...ingredient, count: 1 }];
+      }
+    });
   };
-
   const removeFromBurger = (index) => {
-    setStack(prevStack => prevStack.filter((_, i) => i !== index));
-
-
+    setStack(prevStack => {
+      const item = prevStack[index];
+      if (item.count > 1) {
+        return prevStack.map((ing, i) =>
+          i === index ? { ...ing, count: ing.count - 1 } : ing
+        );
+      } else {
+        return prevStack.filter((_, i) => i !== index);
+      }
+    });
   };
 
   const availableIngredients = [
@@ -31,7 +48,7 @@ const App = () => {
     { name: 'Lettuce', color: 'lawngreen' },
     { name: 'Tomato', color: 'tomato' },
     { name: 'Bacon', color: 'maroon' },
-    { name: 'Onion', color: 'lightyellow' },
+    { name: 'Onion', color: 'lightyellow',  },
     { name: 'Cheddar Cheese', color: '#FDE18B' },
     { name: 'Swiss Cheese', color: '#F1E1A8' },
   ];
